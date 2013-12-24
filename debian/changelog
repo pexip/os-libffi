@@ -1,3 +1,9 @@
+libffi (3.0.11~rc1-5pexip1) pexip; urgency=low
+
+  * Prepare Pexip packaging
+
+ -- John-Mark Bell <jmb@pexip.com>  Tue, 24 Dec 2013 21:33:44 +0000
+
 libffi (3.0.11~rc1-5) experimental; urgency=low
 
   * Fix powerpc and ppc64 builds (Kyle Moffett).
