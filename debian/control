@@ -7,7 +7,7 @@ Build-Depends: debhelper (>= 5), g++-multilib [amd64 i386 mips mipsel powerpc pp
   dpkg-dev (>= 1.16.0~ubuntu4)
 Standards-Version: 3.9.2
 Section: libs
-XS-Pexip-Upstream: http://archive.ubuntu.com/ubuntu/ precise
+XS-Pexip-Upstream: http://ftp.debian.org/debian/ jessie
 
 Package: libffi-dev
 Section: libdevel
