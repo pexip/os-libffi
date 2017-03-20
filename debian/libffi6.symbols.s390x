@@ -1,4 +1,4 @@
-libffi.so.6 lib64ffi6 #MINVER#
+libffi.so.6 libffi6 #MINVER#
  ffi_call@Base 3.0.4
  ffi_call_SYSV@Base 3.0.4
  ffi_closure_SYSV@Base 3.0.4

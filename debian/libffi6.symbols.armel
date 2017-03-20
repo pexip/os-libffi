@@ -1,9 +1,9 @@
 libffi.so.6 libffi6 #MINVER#
+ ffi_arm_trampoline@Base 3.0.12~rc1
  ffi_call@Base 3.0.4
  ffi_call_SYSV@Base 3.0.4
  ffi_call_VFP@Base 3.0.10~rc8
  ffi_closure_SYSV@Base 3.0.4
- ffi_closure_SYSV_inner@Base 3.0.4
  ffi_closure_VFP@Base 3.0.10~rc8
  ffi_closure_alloc@Base 3.0.4
  ffi_closure_free@Base 3.0.4
@@ -11,7 +11,8 @@ libffi.so.6 libffi6 #MINVER#
  ffi_java_raw_call@Base 3.0.4
  ffi_java_raw_size@Base 3.0.4
  ffi_java_raw_to_ptrarray@Base 3.0.4
- ffi_prep_args@Base 3.0.4
+ ffi_prep_args_SYSV@Base 3.1~rc1
+ ffi_prep_args_VFP@Base 3.1~rc1
  ffi_prep_cif@Base 3.0.4
  ffi_prep_cif_machdep@Base 3.0.4
  ffi_prep_cif_machdep_var@Base 3.0.10~rc8
