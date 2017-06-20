@@ -1,3 +1,20 @@
+libffi (3.1-2+deb8u1pexip1) pexip; urgency=low
+
+  * New upstream release
+
+ -- John-Mark Bell <jmb@pexip.com>  Tue, 20 Jun 2017 15:07:18 +0100
+
+libffi (3.1-2+deb8u1) jessie-security; urgency=high
+
+  * Non-maintainer upload by the Security Team.
+  * debian/patches:
+    - 01_add_missing_GNU_STACK_markings, fix requirement on an executable
+      stack on x86_32 (CVE-2017-1000376)                        closes: #751907
+  * debian/rules:
+    - enable pax_emutramp
+
+ -- Yves-Alexis Perez <corsac@debian.org>  Thu, 15 Jun 2017 11:42:36 +0200
+
 libffi (3.1-2+b2pexip1) pexip; urgency=low
 
   * Migrate to Jessie
