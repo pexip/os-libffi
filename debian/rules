@@ -4,6 +4,8 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+unexport CPPFLAGS CFLAGS CXXFLAGS LDFLAGS
+
 SHELL = /bin/bash
 
 vafilt = $(subst $(2)=,,$(filter $(2)=%,$(1)))
@@ -16,16 +18,9 @@ DEB_HOST_MULTIARCH	?= $(call vafilt,$(DPKG_VARS),DEB_HOST_MULTIARCH)
 
 CC  = $(DEB_HOST_GNU_TYPE)-gcc
 CXX = $(DEB_HOST_GNU_TYPE)-g++
-CFLAGS = $(shell dpkg-buildflags --get CFLAGS)
-LDFLAGS = $(shell dpkg-buildflags --get LDFLAGS)
-
-distribution := $(shell lsb_release -is)
-distrelease  := $(shell lsb_release -cs)
-# On non official archives, "lsb_release -cs" default to "n/a". Assume
-# sid in that case 
-ifeq ($(distrelease),n/a)
-distrelease     := sid
-endif
+CPPFLAGS = $(shell dpkg-buildflags --get CPPFLAGS)
+CFLAGS   = $(shell dpkg-buildflags --get CFLAGS)
+LDFLAGS  = $(shell dpkg-buildflags --get LDFLAGS)
 
 ifeq (,$(findstring nocheck, $(DEB_BUILD_OPTIONS)))
   with_check = yes
@@ -37,6 +32,7 @@ p=libffi$(major)
 configure: stamp-configure
 stamp-configure:
 	dh_testdir
+	dh_autoreconf
 	rm -rf build
 	mkdir -p build
 	cd build && ../configure \
@@ -46,7 +42,12 @@ stamp-configure:
 		--mandir=\$${prefix}/share/man \
 		--infodir=\$${prefix}/share/info \
 		--enable-pax_emutramp \
-		CC="$(CC)" CXX="$(CXX)" CFLAGS="$(CFLAGS)" CCASFLAGS="$(CFLAGS) -Wa,--gdwarf2" LDFLAGS="-Wl,-z,defs $(LDFLAGS)"
+		CC="$(CC)" \
+		CXX="$(CXX)" \
+		CPPFLAGS="$(CPPFLAGS)" \
+		CFLAGS="$(CFLAGS)" \
+		CCASFLAGS="$(CFLAGS) -Wa,--gdwarf-2" \
+		LDFLAGS="-Wl,-z,defs $(LDFLAGS)"
 	touch $@
 #		--libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) \
 
@@ -76,13 +77,14 @@ clean:
 	rm -f stamp-*
 	rm -rf build*
 	rm -f doc/libffi.info
+	dh_autoreconf_clean
 	dh_clean 
 
 install: build
 	dh_testdir
 	dh_testroot
-	dh_clean -k
-	dh_installdirs -s $(bootstrap_dh_flags)
+	dh_prep
+	dh_installdirs -s
 	$(MAKE) -C build DESTDIR=$(CURDIR)/debian/tmp install
 	mkdir -p debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)
 	-mv debian/tmp/usr/lib/* debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/.
@@ -92,7 +94,7 @@ install: build
 ifneq ($(DEB_BUILD_PROFILE),stage1)
 	cp -a build/doc/libffi.html debian/libffi-dev/usr/share/doc/$(p)/html
 endif
-	dh_install -s --sourcedir=debian/tmp $(bootstrap_dh_flags)
+	dh_install -s --sourcedir=debian/tmp
 
 	mkdir -p debian/libffi-dev/usr/include/$(DEB_HOST_MULTIARCH)
 	mv debian/libffi-dev/usr/include/*.h \
@@ -107,30 +109,27 @@ binary-indep: build install
 binary-arch: build install
 	dh_testdir
 	dh_testroot
-	dh_installchangelogs -s $(bootstrap_dh_flags)
-	dh_installdocs -s $(bootstrap_dh_flags)
+	dh_installchangelogs -s
+	rm -f debian/libffi6/usr/share/doc/libffi$(major)/changelog
+	dh_installdocs -s
 	dh_installinfo -plibffi-dev doc/libffi.info
 	rm -f debian/libffi-dev/usr/share/info/dir*
 	cp -p ChangeLog debian/libffi-dev/usr/share/doc/libffi$(major)/changelog
 	cp -p ChangeLog.* debian/libffi-dev/usr/share/doc/libffi$(major)/
-ifeq ($(with_check),yes)
-	cp -p build/check.log debian/libffi-dev/usr/share/doc/libffi$(major)/test_results_$(DEB_HOST_MULTIARCH).txt
-endif
 	rm -rf debian/libffi-dev/usr/share/doc/libffi-dev
 	ln -s libffi$(major) debian/libffi-dev/usr/share/doc/libffi-dev
 	rm -rf debian/libffi$(major)-dbg/usr/share/doc/libffi$(major)-dbg
 	ln -s libffi$(major) debian/libffi$(major)-dbg/usr/share/doc/libffi$(major)-dbg
-	dh_strip -s --dbg-package=libffi$(major)-dbg $(bootstrap_dh_flags)
-	rm -f debian/libffi6-dbg/usr/lib/debug/usr/lib{,32,n32,64}/libffi.so.*
-	dh_compress -s $(bootstrap_dh_flags)
-	dh_fixperms -s $(bootstrap_dh_flags)
+	dh_strip -s --dbg-package=libffi$(major)-dbg
+	dh_compress -s
+	dh_fixperms -s
 	dh_makeshlibs -plibffi$(major) --add-udeb=libffi$(major)-udeb
-	dh_makeshlibs -s -Nlibffi$(major) $(bootstrap_dh_flags)
-	dh_installdeb -s $(bootstrap_dh_flags)
-	dh_shlibdeps -s $(bootstrap_dh_flags)
-	dh_gencontrol -s $(bootstrap_dh_flags)
-	dh_md5sums -s $(bootstrap_dh_flags)
-	dh_builddeb -s $(bootstrap_dh_flags)
+	dh_makeshlibs -s -Nlibffi$(major)
+	dh_installdeb -s
+	dh_shlibdeps -s
+	dh_gencontrol -s
+	dh_md5sums -s
+	dh_builddeb -s
 
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install 
