@@ -1,3 +1,9 @@
+libffi (3.2.1-6pexip1) pexip; urgency=medium
+
+  * Migrate to Stretch
+
+ -- John-Mark Bell <jmb@pexip.com>  Tue, 10 Jul 2018 11:15:13 +0000
+
 libffi (3.2.1-6) unstable; urgency=medium
 
   * Revert the AArch64 patch from 3.2.1-5.
