@@ -1,3 +1,22 @@
+libffi (3.2.1-9) unstable; urgency=medium
+
+  * Add home page attribute to the control file. Closes: #816317.
+  * riscv64 backport. Closes: #914442.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 27 Nov 2018 11:52:58 +0100
+
+libffi (3.2.1-8) unstable; urgency=medium
+
+  * More mips r6 updates (YunQiang Su). Closes: #886201.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 07 Jan 2018 10:39:08 +0100
+
+libffi (3.2.1-7) unstable; urgency=medium
+
+  * mips/n32.S: disable .set mips4 on mips r6 (YunQiang Su).
+
+ -- Matthias Klose <doko@debian.org>  Sun, 10 Dec 2017 14:28:54 +0100
+
 libffi (3.2.1-6) unstable; urgency=medium
 
   * Revert the AArch64 patch from 3.2.1-5.
