@@ -1,3 +1,10 @@
+libffi (3.2.1-6pexip2) pexip; urgency=medium
+
+  * debian/patches/prioritise-shm.patch: Prioritise /dev/shm for
+    file-backed mmap areas.
+
+ -- John-Mark Bell <jmb@pexip.com>  Fri, 08 Mar 2019 17:01:22 +0000
+
 libffi (3.2.1-6pexip1) pexip; urgency=medium
 
   * Migrate to Stretch
