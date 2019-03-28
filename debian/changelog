@@ -1,3 +1,10 @@
+libffi (3.1-2+deb8u1pexip2) pexip; urgency=low
+
+  * debian/patches/prioritise-shm.patch: Prioritise /dev/shm for
+    file-backed mmap areas.
+
+ -- John-Mark Bell <jmb@pexip.com>  Thu, 28 Mar 2019 11:31:13 +0000
+
 libffi (3.1-2+deb8u1pexip1) pexip; urgency=low
 
   * New upstream release
