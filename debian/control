@@ -10,7 +10,7 @@ Build-Depends: debhelper (>= 9),
   texinfo
 Standards-Version: 3.9.8
 Section: libs
-XS-Pexip-Upstream: http://ftp.debian.org/debian/ stretch
+XS-Pexip-Upstream: http://ftp.debian.org/debian/ buster
 
 Package: libffi-dev
 Section: libdevel
