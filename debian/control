@@ -8,8 +8,9 @@ Build-Depends: debhelper (>= 9),
   libltdl-dev,
   dejagnu,
   texinfo
-Standards-Version: 3.9.8
+Standards-Version: 4.2.1
 Section: libs
+Homepage: https://sourceware.org/libffi/
 XS-Pexip-Upstream: http://ftp.debian.org/debian/ buster
 
 Package: libffi-dev
@@ -38,7 +39,6 @@ Description: Foreign Function Interface library runtime
  language.
 
 Package: libffi6-dbg
-Priority: extra
 Section: debug
 Architecture: any
 Multi-Arch: same
