@@ -1,3 +1,9 @@
+libffi (3.2.1-9pexip1) pexip; urgency=medium
+
+  * Migrate to Buster
+
+ -- Vincent Sanders <vince@pexip.com>  Mon, 02 Mar 2020 13:25:50 +0000
+
 libffi (3.2.1-9) unstable; urgency=medium
 
   * Add home page attribute to the control file. Closes: #816317.
