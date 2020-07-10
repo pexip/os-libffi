@@ -1,6 +1,7 @@
 libffi (3.2.1-9pexip1) pexip; urgency=medium
 
   * Migrate to Buster
+  * ONLY use /dev/shm for temporary space
 
  -- Vincent Sanders <vince@pexip.com>  Mon, 02 Mar 2020 13:25:50 +0000
 
