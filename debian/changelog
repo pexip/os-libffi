@@ -1,3 +1,9 @@
+libffi (3.2.1-9pexip2) pexip; urgency=medium
+
+  * Rebuild in buster environment
+
+ -- Steve McIntyre <steve.mcintyre@pexip.com>  Wed, 15 Jul 2020 23:07:13 +0000
+
 libffi (3.2.1-9pexip1) pexip; urgency=medium
 
   * Migrate to Buster
