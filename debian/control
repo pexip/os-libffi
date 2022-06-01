@@ -3,12 +3,11 @@ Priority: optional
 Maintainer: Pexip AS <packaging@pexip.com>
 XSBC-Pexip-Original-Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 XSBC-Pexip-Original-Uploaders: Matthias Klose <doko@debian.org>
-Build-Depends: debhelper (>= 9),
-  dh-autoreconf,
+Build-Depends: debhelper (>= 11),
   libltdl-dev,
   dejagnu,
   texinfo
-Standards-Version: 4.2.1
+Standards-Version: 4.5.1
 Section: libs
 Homepage: https://sourceware.org/libffi/
 XS-Pexip-Upstream: http://deb.debian.org/debian/ bullseye
@@ -17,7 +16,7 @@ Package: libffi-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: libffi6 (= ${binary:Version}), dpkg (>= 1.15.4) | install-info, ${misc:Depends}
+Depends: libffi7 (= ${binary:Version}), ${misc:Depends},
 Conflicts: libffi4-dev
 Description: Foreign Function Interface library (development files)
  This package contains the headers and static library files necessary for
@@ -27,7 +26,7 @@ Description: Foreign Function Interface library (development files)
  allows code written in one language to call code written in another
  language.
 
-Package: libffi6
+Package: libffi7
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -38,19 +37,10 @@ Description: Foreign Function Interface library runtime
  allows code written in one language to call code written in another
  language.
 
-Package: libffi6-dbg
-Section: debug
-Architecture: any
-Multi-Arch: same
-Depends: libffi6 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
-Description: Foreign Function Interface library runtime (debug symbols)
- A foreign function interface is the popular name for the interface that
- allows code written in one language to call code written in another
- language.
-
-Package: libffi6-udeb
+Package: libffi7-udeb
 Section: debian-installer
 XC-Package-Type: udeb
+Build-Profiles: <!noudeb>
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Foreign Function Interface library runtime

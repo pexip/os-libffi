@@ -1,9 +1,7 @@
-fix-alpha.diff
-includedir.diff
-aarch64-fix.diff
-libffi-pax.patch
-libffi-race-condition.patch
-mipsen-r6.diff
-401.diff
-libffi-3.2-riscv.patch
+no-toolexeclibdir.diff
+powerpc-fix.diff
+powerpc64-fix.diff
+powerpc64-fix-2.diff
+powerpc-fix-2.diff
+# pexip
 prioritise-shm.patch
