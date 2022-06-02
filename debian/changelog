@@ -1,3 +1,9 @@
+libffi (3.3-6pexip1) pexip; urgency=medium
+
+  * Initial bullseye build
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Thu, 02 Jun 2022 14:42:24 +0100
+
 libffi (3.3-6) unstable; urgency=medium
 
   * Update nios2 symbols (Helmut Grohne). Closes: #982765.
