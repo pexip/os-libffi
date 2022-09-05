@@ -1,3 +1,9 @@
+libffi (3.3-6pexip4) pexip-bullseye; urgency=medium
+
+  * Bullseye rebuild for ARM64 inclusion
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Mon, 05 Sep 2022 10:32:17 +0100
+
 libffi (3.3-6pexip3) pexip-bullseye; urgency=medium
 
   * Rebuild for override changes
