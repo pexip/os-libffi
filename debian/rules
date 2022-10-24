@@ -26,7 +26,7 @@ ifeq (,$(findstring nocheck, $(DEB_BUILD_OPTIONS)))
   with_check = yes
 else
   # override buildd admins to run the testsuite anyway ...
-  ifneq (,$(filter $(DEB_HOST_ARCH), m68k powerpcspe sh4))
+  ifeq ($(DEB_BUILD_ARCH),$(filter $(DEB_HOST_ARCH), m68k powerpcspe sh4))
     with_check = yes
   endif
 endif
@@ -35,7 +35,7 @@ ifeq (,$(filter noudeb, $(DEB_BUILD_PROFILES)))
   with_udeb = yes
 endif
 
-major=7
+major=8
 p=libffi$(major)
 
 configure: stamp-configure
@@ -52,11 +52,13 @@ stamp-configure:
 		--mandir=\$${prefix}/share/man \
 		--infodir=\$${prefix}/share/info \
 		--enable-pax_emutramp \
+		--disable-exec-static-tramp \
+		--without-gcc-arch \
 		CC="$(CC)" \
 		CXX="$(CXX)" \
 		CPPFLAGS="$(CPPFLAGS)" \
 		CFLAGS="$(CFLAGS)" \
-		CCASFLAGS="$(CFLAGS) -Wa,--gdwarf-2" \
+		CCASFLAGS="$(CFLAGS) -Wa,--gdwarf-5" \
 		LDFLAGS="-Wl,-z,defs $(LDFLAGS)"
 	touch $@
 #		--libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) \

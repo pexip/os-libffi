@@ -1,3 +1,74 @@
+libffi (3.4.4-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Remove upstream fixes, now in the 3.4.4 release.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 24 Oct 2022 10:26:41 +0200
+
+libffi (3.4.3-4) unstable; urgency=medium
+
+  * Apply upstream fixes:
+    - Fix types of temporary variables in aarch64 extend_integer_type (#745). 
+      Closes: #1022232.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 23 Oct 2022 14:38:53 +0200
+
+libffi (3.4.3-3) unstable; urgency=medium
+
+  * Apply upstream fixes:
+    - riscv: make copies of structs passed by reference (#738).
+    - AArch64: Fix strict aliasing problem in aarch64 ffi_call (#739).
+    - Flush output in testsuite before aborting (#740).
+
+ -- Matthias Klose <doko@debian.org>  Thu, 20 Oct 2022 12:32:50 +0200
+
+libffi (3.4.3-2) unstable; urgency=medium
+
+  * Re-apply the 3.4.3 -2/-3/-4 changes. Closes: #1020488, #1020490.
+  * Update copyright file (Bastian Germann). Closes: #1012632.
+  * Update watch file (Bastian Germann). Closes: #1012697.
+  * Don't override DEB_BUILD_OPTIONS=nocheck for cross builds (Helmut Grohne).
+    Closes: #1010364.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 22 Sep 2022 15:29:34 +0200
+
+libffi (3.4.3-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Bump standards version.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 21 Sep 2022 16:33:26 +0200
+
+libffi (3.4.2-4) unstable; urgency=medium
+
+  * Configure --without-gcc-arch. Closes: #995223.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 17 Jan 2022 11:37:08 +0100
+
+libffi (3.4.2-3) unstable; urgency=medium
+
+  * Configure with --enable-portable-binary. Closes: #995223.
+  * Update symbols for arc-linux. Closes: #989443.
+  * Update symbols for musl-linux-mips*. Closes: #989158, #990257.
+  * Fix doc-base file. Closes: #995002.
+  * Bump standards version.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 11 Oct 2021 14:12:04 +0200
+
+libffi (3.4.2-2) unstable; urgency=medium
+
+  * Configure with --disable-exec-static-tramp.
+  * Update symbols file for riscv64.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 24 Sep 2021 09:00:02 +0200
+
+libffi (3.4.2-1) experimental; urgency=medium
+
+  * libffi 3.4.2 release.
+  * Update symbols file.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 30 Jun 2021 09:20:58 +0200
+
 libffi (3.3-6) unstable; urgency=medium
 
   * Update nios2 symbols (Helmut Grohne). Closes: #982765.
