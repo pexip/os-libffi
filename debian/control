@@ -7,7 +7,7 @@ Build-Depends: debhelper (>= 11),
   libltdl-dev,
   dejagnu,
   texinfo
-Standards-Version: 4.5.1
+Standards-Version: 4.6.0
 Section: libs
 Homepage: https://sourceware.org/libffi/
 XS-Pexip-Upstream: http://deb.debian.org/debian/ bookworm
@@ -16,7 +16,7 @@ Package: libffi-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: libffi7 (= ${binary:Version}), ${misc:Depends},
+Depends: libffi8 (= ${binary:Version}), ${misc:Depends},
 Conflicts: libffi4-dev
 Description: Foreign Function Interface library (development files)
  This package contains the headers and static library files necessary for
@@ -26,18 +26,21 @@ Description: Foreign Function Interface library (development files)
  allows code written in one language to call code written in another
  language.
 
-Package: libffi7
+Package: libffi8
 Section: libs
 Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Breaks: libffi8ubuntu1 (<< 3.4.2-1)
+Replaces: libffi8ubuntu1 (<< 3.4.2-1)
+Provides: libffi8ubuntu1 (= ${binary:Version})
 Description: Foreign Function Interface library runtime
  A foreign function interface is the popular name for the interface that
  allows code written in one language to call code written in another
  language.
 
-Package: libffi7-udeb
+Package: libffi8-udeb
 Section: debian-installer
 XC-Package-Type: udeb
 Build-Profiles: <!noudeb>

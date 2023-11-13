@@ -1,7 +1,3 @@
 no-toolexeclibdir.diff
-powerpc-fix.diff
-powerpc64-fix.diff
-powerpc64-fix-2.diff
-powerpc-fix-2.diff
 # pexip
 prioritise-shm.patch
