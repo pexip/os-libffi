@@ -2,10 +2,14 @@ Index: os-libffi/src/closures.c
 ===================================================================
 --- os-libffi.orig/src/closures.c
 +++ os-libffi/src/closures.c
-@@ -404,15 +404,7 @@ static struct
+@@ -722,18 +722,7 @@ static struct
    const char *arg;
    int repeat;
  } open_temp_exec_file_opts[] = {
+-#ifdef HAVE_MEMFD_CREATE
+-  { open_temp_exec_file_memfd, "libffi", 0 },
+-#endif
+-  { open_temp_exec_file_env, "LIBFFI_TMPDIR", 0 },
 -  { open_temp_exec_file_env, "TMPDIR", 0 },
 -  { open_temp_exec_file_dir, "/tmp", 0 },
 -  { open_temp_exec_file_dir, "/var/tmp", 0 },
@@ -14,7 +18,6 @@ Index: os-libffi/src/closures.c
 -#ifdef HAVE_MNTENT
 -  { open_temp_exec_file_mnt, "/etc/mtab", 1 },
 -  { open_temp_exec_file_mnt, "/proc/mounts", 1 },
--#endif /* HAVE_MNTENT */
+ #endif /* HAVE_MNTENT */
  };
  
- /* Current index into open_temp_exec_file_opts.  */
