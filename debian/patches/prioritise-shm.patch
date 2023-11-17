@@ -2,7 +2,7 @@ Index: os-libffi/src/closures.c
 ===================================================================
 --- os-libffi.orig/src/closures.c
 +++ os-libffi/src/closures.c
-@@ -722,18 +722,6 @@ static struct
+@@ -722,19 +722,7 @@ static struct
    const char *arg;
    int repeat;
  } open_temp_exec_file_opts[] = {
@@ -21,3 +21,4 @@ Index: os-libffi/src/closures.c
 -#endif /* HAVE_MNTENT */
  };
  
+ /* Current index into open_temp_exec_file_opts.  */
