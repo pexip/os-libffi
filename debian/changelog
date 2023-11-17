@@ -1,3 +1,9 @@
+libffi (3.4.4-1pexip2) pexip-bookworm; urgency=medium
+
+  * Fix up refreshed shm patch
+
+ -- Steve McIntyre <steve.mcintyre@pexip.com>  Fri, 17 Nov 2023 11:47:38 +0000
+
 libffi (3.4.4-1pexip1) pexip-bookworm; urgency=medium
 
   * Initial bookworm build
