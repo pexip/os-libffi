@@ -6,7 +6,7 @@ Build-Depends: debhelper (>= 11),
   libltdl-dev,
   dejagnu,
   texinfo
-Standards-Version: 4.6.0
+Standards-Version: 4.6.2
 Section: libs
 Homepage: https://sourceware.org/libffi/
 
