@@ -1,3 +1,9 @@
+libffi (3.4.6-1+pexip24u2) pexip; urgency=medium
+
+  * Rebuild with correct distribution
+
+ -- Vincent Sanders <vince@pexip.com>  Wed, 04 Nov 2024 12:05:22 +0000
+
 libffi (3.4.6-1+pexip24u1) pexip-bookworm; urgency=medium
 
   * Update to trixie version
