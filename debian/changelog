@@ -1,3 +1,32 @@
+libffi (3.4.6-1+pexip24u1) pexip-bookworm; urgency=medium
+
+  * Update to trixie version
+
+ -- Vincent Sanders <vince@pexip.com>  Wed, 04 Nov 2024 11:52:28 +0000
+
+libffi (3.4.6-1) unstable; urgency=medium
+
+  * New upstream version.
+    - Add support for wasm32.
+    - Add support for aarch64 branch target identification (bti).
+    - Add support for ARCv3: ARC32 & ARC64.
+    - Add support for HPPA64, and many HPPA fixes.
+    - Add support for Haikuos on PowerPC.
+    - Fixes for AIX, loongson, MIPS, power, sparc64, and x86 Darwin.
+  * Update copyright dates.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 21 Feb 2024 23:25:21 +0100
+
+libffi (3.4.4-2) unstable; urgency=medium
+
+  * Update symbols file for loong64. Closes: #1024359.
+  * Apply patches for hppa. Closes: #1024492.
+  * Update symbols for mips64el.
+  * Update watch file.
+  * Bump standards version.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 25 Nov 2023 08:17:52 +0100
+
 libffi (3.4.4-1+pexip24u5) pexip-bookworm; urgency=medium
 
   * New versioning scheme
