@@ -1,0 +1,49 @@
+From 6516ca1e22952619e7ac2503e3786483919228d9 Mon Sep 17 00:00:00 2001
+From: Ignacio Casal Quinteiro <qignacio@amazon.com>
+Date: Sat, 30 Dec 2017 06:57:44 +0530
+Subject: [PATCH 2/2] Use C89 declarations for x86 MSVC code
+
+Fixes building with VS2013 which only supports C89.
+
+See: https://github.com/wingtk/gvsbuild/issues/206
+---
+ src/x86/ffiold-msvc.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/src/x86/ffiold-msvc.c b/src/x86/ffiold-msvc.c
+index c84d028d..fa8ef5da 100644
+--- a/src/x86/ffiold-msvc.c
++++ b/src/x86/ffiold-msvc.c
+@@ -99,11 +99,13 @@ unsigned int ffi_prep_args(char *stack, extended_cif *ecif)
+        i != 0;
+        i--, p_arg += dir, p_argv += dir)
+     {
++      size_t z;
++
+       /* Align if necessary */
+       if ((sizeof(void*) - 1) & (size_t) argp)
+         argp = (char *) FFI_ALIGN(argp, sizeof(void*));
+ 
+-      size_t z = (*p_arg)->size;
++      z = (*p_arg)->size;
+ 
+ #ifdef X86_WIN64
+       if (z > FFI_SIZEOF_ARG
+@@ -599,11 +601,13 @@ ffi_prep_incoming_args(char *stack, void **rvalue, void **avalue,
+        i != 0;
+        i--, p_arg += dir, p_argv += dir)
+     {
++      size_t z;
++
+       /* Align if necessary */
+       if ((sizeof(void*) - 1) & (size_t) argp)
+         argp = (char *) FFI_ALIGN(argp, sizeof(void*));
+ 
+-      size_t z = (*p_arg)->size;
++      z = (*p_arg)->size;
+ 
+ #ifdef X86_WIN64
+       if (z > FFI_SIZEOF_ARG
+-- 
+2.46.0
+
