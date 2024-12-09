@@ -1,0 +1,2 @@
+Port-to-the-Meson-build-system.patch
+Use-C89-declarations-for-x86-MSVC-code.patch
