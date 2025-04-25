@@ -1,3 +1,18 @@
+libffi (3.4.7-1) unstable; urgency=medium
+
+  * New upstream version.
+    - Add static trampoline support for Linux on s390x.
+    - Fix BTI support for ARM64.
+    - Support pointer authentication for ARM64.
+    - Fix ASAN compatibility.
+    - Fix x86-64 calls with 6 GP registers and some SSE registers.
+    - Miscellaneous fixes for ARC and Darwin ARM64.
+    - Fix OpenRISC or1k and Solaris 10 builds.
+    - Remove nios2 port.
+  * Bump standards version.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 12 Feb 2025 14:05:41 +0100
+
 libffi (3.4.6-1+pexip24u2) pexip; urgency=medium
 
   * Rebuild with correct distribution
