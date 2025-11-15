@@ -590,7 +590,7 @@ new file mode 100644
 index 0000000..ba29bef
 --- /dev/null
 +++ b/src/meson.build
-@@ -0,0 +1,131 @@
+@@ -0,0 +1,150 @@
 +ffi_c_sources = [
 +  'prep_cif.c',
 +  'types.c',
@@ -610,7 +610,7 @@ index 0000000..ba29bef
 +TARGET = ''
 +if host_cpu_family.startswith('x86')
 +  arch_subdir = 'x86'
-+  if host_system == 'windows'
++  if host_system == 'windows' or host_system == 'cygwin'
 +    if size_t == 4
 +      TARGET = 'X86_WIN32'
 +      if cc.get_id() == 'msvc'
@@ -649,17 +649,16 @@ index 0000000..ba29bef
 +  arch_subdir = 'aarch64'
 +  TARGET = 'AARCH64'
 +  c_sources = ['ffi.c']
-+  asm_sources = ['sysv.S']
++  if cc.get_id() == 'msvc'
++    asm_sources = ['win64_armasm.S']
++  else
++    asm_sources = ['sysv.S']
++  endif
 +elif host_cpu_family == 'arm'
 +  arch_subdir = 'arm'
 +  TARGET = 'ARM'
 +  c_sources = ['ffi.c']
 +  asm_sources = ['sysv.S']
-+elif host_cpu_family == 'wasm32'
-+  arch_subdir = 'wasm32'
-+  TARGET = 'wasm32'
-+  c_sources = ['ffi.c']
-+  asm_sources = []
 +endif
 +
 +if TARGET == ''
@@ -684,7 +683,26 @@ index 0000000..ba29bef
 +  # then through the assembler, and then link the objects into the target.
 +  # FIXME: Add native support in Meson for this.
 +  cl = find_program('cl')
-+  ml = find_program('ml', 'ml64')
++  if host_cpu_family.startswith('x86')
++    if host_cpu_family == 'x86'
++      ml = find_program('ml')
++    elif host_cpu_family == 'x86_64'
++      ml = find_program('ml64')
++    else
++      error('Unknown cpu_family: ' + host_cpu_family)
++    endif
++    assembler_args = [ml, '/Fo', '@OUTPUT@', '/c', '@INPUT@']
++    if get_option('buildtype').startswith('debug')
++      assembler_args += ['/Zi', '/Zd']
++    endif
++  elif host_cpu_family == 'aarch64'
++    assembler_args = [find_program('armasm64'), '-o', '@OUTPUT@', '@INPUT@']
++    if get_option('buildtype').startswith('debug')
++      assembler_args += ['-g']
++    endif
++  else
++    error('Unsupported MSVC target: ' + host_cpu_family)
++  endif
 +  ffi_asm_objs = []
 +  foreach asm_source : ffi_asm_sources
 +    incflags = ['/I' + join_paths(meson.current_source_dir(), '..'),
@@ -702,7 +720,7 @@ index 0000000..ba29bef
 +    ffi_asm_objs += custom_target(obj_name,
 +        input : preproc,
 +        output : obj_name,
-+        command : [ml, '/Fo', '@OUTPUT@', '/c', '@INPUT@'])
++        command : assembler_args)
 +  endforeach
 +  ffi_asm_sources = ffi_asm_objs
 +endif
@@ -722,6 +740,7 @@ index 0000000..ba29bef
 +ffi_dep = declare_dependency(link_with : ffi_lib,
 +  compile_args : static_build ? [ ffi_static_build ] : [],
 +  include_directories : ffiinc)
++
 diff --git a/src/x86/ffiold-msvc.c b/src/x86/ffiold-msvc.c
 new file mode 100644
 index 0000000..e4e3cff
