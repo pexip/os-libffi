@@ -1,0 +1,21 @@
+From 709285e37894f98b66d08168fb2f3b57d0fa8667 Mon Sep 17 00:00:00 2001
+From: Tulio Beloqui <tulio@pexip.com>
+Date: Wed, 18 Mar 2026 15:15:44 +0100
+Subject: [PATCH] add relocate prefix support in pkgconfig
+
+---
+ libffi.pc.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libffi.pc.in b/libffi.pc.in
+index 6fad83b..26c75de 100644
+--- a/libffi.pc.in
++++ b/libffi.pc.in
+@@ -1,3 +1,3 @@
+-prefix=@prefix@
++prefix=${pcfiledir}/../..
+ exec_prefix=@exec_prefix@
+ libdir=@libdir@
+-- 
+2.43.0
+
