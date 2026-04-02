@@ -1,3 +1,5 @@
+Change the order of temporary directory creation to only use /dev/shm.
+This is the preferred location for PexOS based products.
 Index: os-libffi/src/closures.c
 ===================================================================
 --- os-libffi.orig/src/closures.c
